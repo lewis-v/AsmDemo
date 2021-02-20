@@ -1,0 +1,3 @@
+include ':ASMDemoPlugin'
+rootProject.name='ASMDemo'
+include ':app'

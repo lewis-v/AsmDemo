@@ -1,0 +1,57 @@
+plugins {
+    id 'kotlin'
+    id 'groovy'
+    id 'maven'
+}
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+
+        java {
+            srcDir 'src/main/java'
+        }
+
+        kotlin {
+            srcDir 'src/main/kotlin'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation "com.android.tools.build:gradle-api:3.6.3"
+    implementation gradleApi()
+    implementation "com.android.tools.build:gradle:3.6.3"
+    implementation "org.ow2.asm:asm:7.0"
+    implementation "org.ow2.asm:asm-commons:7.0"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+//指定上传的地址和插件id,版本
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'com.lewis.plugin'
+            pom.artifactId = 'asm-plugin'
+            pom.version = '0.0.2'
+            repository(url: uri('G:/program/Repo'))
+        }
+    }
+}
