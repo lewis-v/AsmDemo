@@ -8,6 +8,7 @@ class DemoClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM5, 
 
     private var className: String? = null
 
+    //类入口
     override fun visit(
         version: Int,
         access: Int,
@@ -21,6 +22,7 @@ class DemoClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM5, 
         println("visit name:$name")
     }
 
+    //类中方法的入口
     override fun visitMethod(
         access: Int,
         name: String?,
@@ -31,6 +33,7 @@ class DemoClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM5, 
         val result =  super.visitMethod(access, name, descriptor, signature, exceptions)
         println("visitMethod name:$name")
         if (className == "com/lewis/asmdemo/MainActivity" && name == "onCreate") {//过滤需要操作的类名和方法名
+            //替换成自定义的方法扫描
             return DemoMethodVisitor(result)
         }
         return result

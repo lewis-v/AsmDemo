@@ -72,6 +72,7 @@ class DemoTransform : Transform(), Plugin<Project> {
 
                             val cr = ClassReader(file.readBytes())
                             val cw = ClassWriter(cr, ClassWriter.COMPUTE_MAXS)
+                            //需要处理的类使用自定义的visitor来处理
                             val visitor = DemoClassVisitor(cw)
                             cr.accept(visitor, ClassReader.EXPAND_FRAMES)
 

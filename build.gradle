@@ -5,11 +5,13 @@ buildscript {
     repositories {
         google()
         jcenter()
+        //添加仓库地址
         maven {
             url 'G:/program/Repo'
         }
     }
     dependencies {
+        //引用的插件
         classpath "com.lewis.plugin:asm-plugin:0.0.2"
         classpath 'com.android.tools.build:gradle:3.6.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
